@@ -24,6 +24,7 @@ struct ContentView: View {
                 
                 NavigationLink {
                     TriviaView()
+                        .environmentObject(triviaManager)
                 } label: {
                     PrimaryButton(text: "Let's go!")
                 }
