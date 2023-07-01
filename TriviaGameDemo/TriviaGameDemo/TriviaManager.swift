@@ -16,7 +16,7 @@ class TriviaManager: ObservableObject {
     @Published private(set) var answerSelected = false
     @Published private(set) var question: AttributedString = ""
     @Published private(set) var answerChoices: [Answer] = []
-    @Published private(set) var progess: CGFloat = 0.00
+    @Published private(set) var progress: CGFloat = 0.00
     @Published private(set) var score = 0
     
     init() {
@@ -40,6 +40,11 @@ class TriviaManager: ObservableObject {
             let decodedData = try decoder.decode(Trivia.self, from: data)
             
             DispatchQueue.main.async {
+                self.index = 0
+                self.score = 0
+                self.progress = 0.00
+                self.reachedEnd = false
+                
                 self.trivia = decodedData.results
                 self.length = self.trivia.count
                 self.setQuestion()
@@ -61,7 +66,7 @@ class TriviaManager: ObservableObject {
     
     func setQuestion() {
         answerSelected = false
-        progess = CGFloat(Double(index + 1) / Double(length) * 350)
+        progress = CGFloat(Double(index + 1) / Double(length) * 350)
         
         if index < length {
             let currentTriviaQuestion = trivia[index]

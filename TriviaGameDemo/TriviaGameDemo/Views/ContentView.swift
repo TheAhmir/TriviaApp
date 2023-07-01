@@ -34,6 +34,7 @@ struct ContentView: View {
             .edgesIgnoringSafeArea(.all)
         .background(Color(red: 0.984313725490196, green: 0.9294117647058824, blue: 0.8470588235294118))
         }
+        .navigationBarBackButtonHidden(true)
     }
 }
 
